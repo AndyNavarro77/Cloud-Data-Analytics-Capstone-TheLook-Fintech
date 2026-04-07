@@ -26,6 +26,23 @@ A partir de esto, se definieron tres preguntas críticas:
 
 ---
 
+## 📊 Data Understanding
+
+El análisis se basó en un dataset de préstamos que incluye:
+
+- Información de préstamos (monto, estado, fecha de emisión)
+- Datos de clientes (ingresos, propiedad de vivienda)
+- Datos geográficos (estado, región)
+
+### Consideraciones clave:
+- Presencia de datos anidados (campo `purpose`)
+- Necesidad de integrar fuentes externas (clasificación regional)
+- Inconsistencias en categorías (duplicados en motivos de préstamo)
+
+👉 Se realizaron procesos de exploración, validación y limpieza para asegurar la calidad de los datos antes del análisis.
+
+---
+
 ## 🏗️ Solution Design
 
 Se desarrolló una solución basada en el ciclo completo de datos en la nube:
@@ -163,7 +180,38 @@ El proyecto permitió:
 - SQL  
 - Looker Enterprise  
 - LookML  
-- Google Sheets  
+- Google Sheets
+
+---
+
+## 🧠 Analytical Approach
+
+El enfoque del análisis estuvo guiado por las necesidades del negocio:
+
+- Definición de métricas clave alineadas a Tesorería  
+- Transformación de datos para responder preguntas específicas  
+- Priorización de claridad y usabilidad en la visualización  
+
+Se buscó no solo analizar datos, sino **traducirlos en información accionable**.
+
+---
+
+## 🚀 Conclusion
+
+Este proyecto demuestra la capacidad de:
+
+- Diseñar soluciones de datos orientadas a negocio  
+- Trabajar con datos en entornos cloud de forma eficiente  
+- Transformar datos complejos en insights claros  
+- Construir herramientas que facilitan la toma de decisiones  
+
+Además, sienta las bases para futuras mejoras, como:
+
+- Modelos predictivos de riesgo de default  
+- Automatización de pipelines de datos  
+- Integración con más fuentes externas  
+
+👉 El enfoque estuvo siempre en generar impacto real mediante datos, no solo en realizar análisis técnicos.
 
 ---
 
