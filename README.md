@@ -1,110 +1,147 @@
-🚀 Cloud Data Analytics Capstone — TheLook Fintech
-📌 Overview
+🚀 Cloud Data Analytics Project — TheLook Fintech
+🧩 Project Overview
 
-Proyecto final del Google Cloud Data Analytics Professional Certificate (Google Cloud × Coursera).
+En este proyecto trabajé como Cloud Data Analyst, diseñando e implementando un pipeline de datos end-to-end en Google Cloud para una fintech en crecimiento (TheLook Fintech).
 
-En este proyecto asumí el rol de Cloud Data Analyst, trabajando con datos de TheLook Fintech, una empresa de préstamos para e-commerce.
+El objetivo fue transformar datos operativos en información estratégica para el equipo de Tesorería, permitiendo monitorear la salud financiera de la empresa y reducir riesgos asociados a la cartera de préstamos.
 
-El objetivo fue resolver problemas reales del área de Tesorería aplicando el ciclo completo de datos en la nube:
+🎯 Business Challenge
 
-Collect → Process → Store → Analyze → Activate
+El área de Tesorería enfrentaba tres desafíos clave:
 
-🎯 Business Problem
+Falta de visibilidad sobre el flujo de caja
+Desconocimiento de los factores de riesgo en los préstamos
+Riesgo de concentración geográfica
 
-El equipo de Tesorería necesitaba visibilidad sobre 3 áreas clave para la salud financiera:
+A partir de esto, se definieron tres preguntas críticas:
 
-💰 Flujo de caja
-Asegurar que los ingresos superen los préstamos otorgados mensualmente
-📊 Propósito de los préstamos
-Identificar los motivos de solicitud (relacionados con el riesgo de repago)
-🌎 Distribución geográfica
-Detectar concentraciones de riesgo por región
-🧰 Tech Stack
-Herramienta	Uso
-BigQuery	Exploración, transformación y almacenamiento
-SQL	JOINs, agregaciones, CTAS, deduplicación
-Google Cloud Storage	Ingesta de datos externos
-Looker Enterprise	Dashboard interactivo
-LookML	Modelado de métricas y dimensiones
-Google Sheets	Exportación de datos
-🏗️ Data Pipeline Architecture
+¿El volumen de préstamos otorgados es sostenible respecto a los ingresos?
+¿Qué motivos de préstamo están asociados a mayor riesgo?
+¿Cómo se distribuyen los préstamos geográficamente?
+🏗️ Solution Design
 
-El proyecto cubre todo el flujo de datos en la nube:
+Se desarrolló una solución basada en el ciclo completo de datos en la nube:
 
-Ingesta → Dataset fintech + CSV externo (regiones)
-Procesamiento → Transformaciones SQL en BigQuery
-Almacenamiento → Tablas optimizadas (CTAS)
-Análisis → Modelado en Looker
-Activación → Dashboard interactivo
-⚙️ Data Processing (BigQuery)
-🔍 Exploración
+Ingesta → Procesamiento → Almacenamiento → Análisis → Activación
+
+El enfoque no fue solo técnico, sino orientado a resolver necesidades concretas del negocio.
+
+⚙️ Data Engineering & Processing (BigQuery)
+🔍 Exploración y entendimiento del dataset
+Análisis estructural de múltiples tablas
 Identificación de métricas clave:
-loan_amount
-issued_date
-📥 Ingesta de datos externos
-Importación de CSV con regiones de EE.UU.
-Creación de tabla enriquecida para análisis geográfico
-🔗 Transformación y joins
-Consolidación de datos en una única tabla:
-loan_id
-loan_amount
-region_name
-🏗️ Materialización (CTAS)
-Uso de CREATE TABLE AS SELECT
-Generación de tablas listas para análisis y exportación
-🧩 Datos anidados
-Extracción del campo purpose desde estructuras anidadas
-🧹 Limpieza de datos
-Eliminación de duplicados en purpose
-Mejora de calidad e integridad de datos
-📈 Reporte de flujo de caja
+loan_amount (flujo de salida)
+issued_date (temporalidad del flujo)
+
+👉 Decisión clave: definir correctamente estas variables permitió construir métricas confiables de flujo de caja.
+
+📥 Integración de fuentes externas
+Importación de archivo CSV con clasificación geográfica
+Normalización e incorporación al entorno BigQuery
+
+👉 Valor agregado: enriquecimiento del dataset para habilitar análisis de riesgo geográfico.
+
+🔗 Transformación y modelado de datos
+JOIN entre múltiples tablas para consolidar información crítica
+Creación de dataset analítico unificado
+
+👉 Problema resuelto: datos fragmentados → dataset listo para análisis
+
+🏗️ Materialización de datos (CTAS)
+Implementación de CREATE TABLE AS SELECT
+Generación de tablas persistentes listas para consumo
+
+👉 Impacto: mejora en performance + facilidad de exportación y uso por otros equipos
+
+🧩 Manejo de datos complejos
+Extracción de información desde estructuras anidadas (purpose)
+
+👉 Insight técnico: capacidad de trabajar con modelos de datos no planos (muy valorado en cloud)
+
+🧹 Data Cleaning & Quality
+Identificación y eliminación de duplicados
+Estandarización de categorías
+
+👉 Problema resuelto: inconsistencias que afectaban el análisis de comportamiento
+
+📈 Construcción de métricas de negocio
 Agregación de préstamos por día y año
-Base para monitoreo financiero
-📊 Dashboard — Loan Insights
+Base para monitoreo de flujo de caja
 
-Dashboard interactivo desarrollado en Looker para responder preguntas de negocio.
+👉 Resultado: dataset preparado para análisis temporal y financiero
 
-🔴 KPI principal — Total de préstamos vigentes
-Indicador con formato condicional
-🔴 Alerta visual si supera $3B
-🥧 Distribución por estado
-Préstamos por categoría:
-Al día
-Atrasado
-Default
-Pagado, etc.
-📍 Top 10 estados con mayor riesgo
-Identificación de concentración geográfica
-👤 Top 10 clientes por ingreso
-Segmentación de clientes de alto valor
-⚡ Features del Dashboard
-🔄 Cross-filtering (interactividad total)
-⏱️ Actualización automática
-KPIs críticos: cada hora
-Resto: cada 24h
+📊 Data Analysis & Visualization (Looker)
+
+Se desarrolló el dashboard “Loan Insights”, enfocado en usabilidad y toma de decisiones.
+
+🔴 KPI Crítico — Total Outstanding Loans
+Indicador principal de exposición financiera
+Formato condicional:
+🔴 alerta automática si supera $3B
+
+👉 Valor: permite decisiones rápidas sin necesidad de análisis manual
+
+🥧 Distribución por estado del préstamo
+Análisis del portfolio:
+Current, Late, Default, Charged-off, etc.
+
+👉 Insight: visibilidad inmediata de la salud de los préstamos
+
+📍 Análisis geográfico (Top 10 estados)
+Identificación de concentración de préstamos
+
+👉 Problema resuelto: detección de riesgo sistémico por región
+
+👤 Segmentación de clientes (Top ingresos)
+Foco en clientes con:
+alto ingreso
+vivienda propia
+préstamos activos
+
+👉 Valor estratégico: segmentación para decisiones comerciales y de riesgo
+
+⚡ Dashboard Features (UX & Data Experience)
+🔄 Cross-filtering (análisis interactivo)
+⏱️ Actualización automática:
+KPIs críticos → cada hora
+Otros insights → diario
+🎯 Diseño enfocado en claridad y toma de decisiones
+
+👉 Diferencial: no solo análisis, sino experiencia de usuario (UX en datos)
+
+📈 Business Impact
+
+La solución permitió:
+
+✔️ Monitorear el flujo de caja de forma continua
+✔️ Detectar patrones de riesgo en la cartera de préstamos
+✔️ Identificar concentraciones geográficas críticas
+✔️ Facilitar la toma de decisiones basada en datos
+📌 Key Insights (Ejemplo de análisis)
+Determinados propósitos de préstamo presentan mayor riesgo de incumplimiento
+Existe concentración geográfica en ciertos estados
+El volumen de préstamos requiere monitoreo constante para evitar sobreexposición
 🧠 Skills Demonstrated
-Cloud Data Analytics end-to-end
+🔹 Técnicas
 SQL avanzado (JOINs, CTAS, nested data)
-Data cleaning & deduplication
-Integración de múltiples fuentes
-Data storytelling con dashboards
-Traducción de negocio → solución técnica
-Diseño de KPIs y alertas visuales
-📈 Results & Impact
-
-El proyecto entregó:
-
-✅ Pipeline completo de datos en la nube
-✅ Reportes claros sobre:
-Flujo de caja
-Propósito de préstamos
-Distribución geográfica
-✅ Dashboard interactivo para toma de decisiones
+BigQuery (procesamiento en la nube)
+Looker & LookML
+Modelado de datos
+🔹 Analíticas
+Data cleaning & data quality
+Data storytelling
+Definición de KPIs
+🔹 De negocio (CLAVE)
+Traducción de requerimientos → soluciones técnicas
+Pensamiento crítico aplicado a riesgo financiero
+Diseño de métricas accionables
+🧰 Tech Stack
+Google BigQuery
+Google Cloud Storage
+SQL
+Looker Enterprise
+LookML
+Google Sheets
 🎓 Certification
 
-Este proyecto forma parte del:
-
-Google Cloud Data Analytics Professional Certificate
-Google Cloud × Coursera
-
-👉 (https://www.coursera.org/account/accomplishments/professional-cert/K73Z32MVDVJZ)
+👉 Google Cloud Data Analytics Professional Certificate
