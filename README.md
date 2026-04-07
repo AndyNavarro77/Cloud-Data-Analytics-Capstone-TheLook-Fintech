@@ -1,147 +1,178 @@
-🚀 Cloud Data Analytics Project — TheLook Fintech
-🧩 Project Overview
+# 🚀 Cloud Data Analytics Project — TheLook Fintech
 
-En este proyecto trabajé como Cloud Data Analyst, diseñando e implementando un pipeline de datos end-to-end en Google Cloud para una fintech en crecimiento (TheLook Fintech).
+---
 
-El objetivo fue transformar datos operativos en información estratégica para el equipo de Tesorería, permitiendo monitorear la salud financiera de la empresa y reducir riesgos asociados a la cartera de préstamos.
+## 🧩 Project Overview
 
-🎯 Business Challenge
+En este proyecto trabajé como **Cloud Data Analyst**, diseñando e implementando un pipeline de datos end-to-end en Google Cloud para una fintech en crecimiento (**TheLook Fintech**).
+
+El objetivo fue transformar datos operativos en **información estratégica** para el equipo de Tesorería, permitiendo monitorear la salud financiera de la empresa y reducir riesgos asociados a la cartera de préstamos.
+
+---
+
+## 🎯 Business Challenge
 
 El área de Tesorería enfrentaba tres desafíos clave:
 
-Falta de visibilidad sobre el flujo de caja
-Desconocimiento de los factores de riesgo en los préstamos
-Riesgo de concentración geográfica
+- Falta de visibilidad sobre el flujo de caja  
+- Desconocimiento de los factores de riesgo en los préstamos  
+- Riesgo de concentración geográfica  
 
 A partir de esto, se definieron tres preguntas críticas:
 
-¿El volumen de préstamos otorgados es sostenible respecto a los ingresos?
-¿Qué motivos de préstamo están asociados a mayor riesgo?
-¿Cómo se distribuyen los préstamos geográficamente?
-🏗️ Solution Design
+- ¿El volumen de préstamos otorgados es sostenible respecto a los ingresos?  
+- ¿Qué motivos de préstamo están asociados a mayor riesgo?  
+- ¿Cómo se distribuyen los préstamos geográficamente?  
+
+---
+
+## 🏗️ Solution Design
 
 Se desarrolló una solución basada en el ciclo completo de datos en la nube:
-
 Ingesta → Procesamiento → Almacenamiento → Análisis → Activación
 
-El enfoque no fue solo técnico, sino orientado a resolver necesidades concretas del negocio.
 
-⚙️ Data Engineering & Processing (BigQuery)
-🔍 Exploración y entendimiento del dataset
-Análisis estructural de múltiples tablas
-Identificación de métricas clave:
-loan_amount (flujo de salida)
-issued_date (temporalidad del flujo)
+El enfoque fue completamente orientado a negocio.
 
-👉 Decisión clave: definir correctamente estas variables permitió construir métricas confiables de flujo de caja.
+---
 
-📥 Integración de fuentes externas
-Importación de archivo CSV con clasificación geográfica
-Normalización e incorporación al entorno BigQuery
+## ⚙️ Data Engineering & Processing (BigQuery)
 
-👉 Valor agregado: enriquecimiento del dataset para habilitar análisis de riesgo geográfico.
+### 🔍 Exploración y entendimiento del dataset
+- Análisis estructural de múltiples tablas  
+- Identificación de métricas clave:
+  - `loan_amount`
+  - `issued_date`
 
-🔗 Transformación y modelado de datos
-JOIN entre múltiples tablas para consolidar información crítica
-Creación de dataset analítico unificado
+---
 
-👉 Problema resuelto: datos fragmentados → dataset listo para análisis
+### 📥 Integración de fuentes externas
+- Importación de archivo CSV con clasificación geográfica  
+- Normalización e integración en BigQuery  
 
-🏗️ Materialización de datos (CTAS)
-Implementación de CREATE TABLE AS SELECT
-Generación de tablas persistentes listas para consumo
+---
 
-👉 Impacto: mejora en performance + facilidad de exportación y uso por otros equipos
+### 🔗 Transformación y modelado de datos
+- JOIN entre múltiples tablas  
+- Consolidación en un dataset analítico unificado  
 
-🧩 Manejo de datos complejos
-Extracción de información desde estructuras anidadas (purpose)
+---
 
-👉 Insight técnico: capacidad de trabajar con modelos de datos no planos (muy valorado en cloud)
+### 🏗️ Materialización (CTAS)
+- Uso de `CREATE TABLE AS SELECT`  
+- Generación de tablas listas para análisis y exportación  
 
-🧹 Data Cleaning & Quality
-Identificación y eliminación de duplicados
-Estandarización de categorías
+---
 
-👉 Problema resuelto: inconsistencias que afectaban el análisis de comportamiento
+### 🧩 Manejo de datos anidados
+- Extracción del campo `purpose` desde estructuras complejas  
 
-📈 Construcción de métricas de negocio
-Agregación de préstamos por día y año
-Base para monitoreo de flujo de caja
+---
 
-👉 Resultado: dataset preparado para análisis temporal y financiero
+### 🧹 Data Cleaning
+- Eliminación de duplicados  
+- Mejora de calidad e integridad de datos  
 
-📊 Data Analysis & Visualization (Looker)
+---
 
-Se desarrolló el dashboard “Loan Insights”, enfocado en usabilidad y toma de decisiones.
+### 📈 Construcción de métricas
+- Agregación de préstamos por día y año  
+- Base para análisis de flujo de caja  
 
-🔴 KPI Crítico — Total Outstanding Loans
-Indicador principal de exposición financiera
-Formato condicional:
-🔴 alerta automática si supera $3B
+---
 
-👉 Valor: permite decisiones rápidas sin necesidad de análisis manual
+## 📊 Data Analysis & Visualization (Looker)
 
-🥧 Distribución por estado del préstamo
-Análisis del portfolio:
-Current, Late, Default, Charged-off, etc.
+Se desarrolló el dashboard **"Loan Insights"** enfocado en toma de decisiones.
 
-👉 Insight: visibilidad inmediata de la salud de los préstamos
+---
 
-📍 Análisis geográfico (Top 10 estados)
-Identificación de concentración de préstamos
+### 🔴 KPI Principal — Total Outstanding Loans
+- Indicador de exposición financiera  
+- Alerta visual automática si supera $3B  
 
-👉 Problema resuelto: detección de riesgo sistémico por región
+---
 
-👤 Segmentación de clientes (Top ingresos)
-Foco en clientes con:
-alto ingreso
-vivienda propia
-préstamos activos
+### 🥧 Distribución por estado del préstamo
+- Current, Late, Default, Paid, etc.  
 
-👉 Valor estratégico: segmentación para decisiones comerciales y de riesgo
+---
 
-⚡ Dashboard Features (UX & Data Experience)
-🔄 Cross-filtering (análisis interactivo)
-⏱️ Actualización automática:
-KPIs críticos → cada hora
-Otros insights → diario
-🎯 Diseño enfocado en claridad y toma de decisiones
+### 📍 Top 10 estados con mayor concentración
+- Identificación de riesgo geográfico  
 
-👉 Diferencial: no solo análisis, sino experiencia de usuario (UX en datos)
+---
 
-📈 Business Impact
+### 👤 Top 10 clientes por ingreso
+- Clientes con alto ingreso + vivienda propia + préstamos activos  
 
-La solución permitió:
+---
 
-✔️ Monitorear el flujo de caja de forma continua
-✔️ Detectar patrones de riesgo en la cartera de préstamos
-✔️ Identificar concentraciones geográficas críticas
-✔️ Facilitar la toma de decisiones basada en datos
-📌 Key Insights (Ejemplo de análisis)
-Determinados propósitos de préstamo presentan mayor riesgo de incumplimiento
-Existe concentración geográfica en ciertos estados
-El volumen de préstamos requiere monitoreo constante para evitar sobreexposición
-🧠 Skills Demonstrated
-🔹 Técnicas
-SQL avanzado (JOINs, CTAS, nested data)
-BigQuery (procesamiento en la nube)
-Looker & LookML
-Modelado de datos
-🔹 Analíticas
-Data cleaning & data quality
-Data storytelling
-Definición de KPIs
-🔹 De negocio (CLAVE)
-Traducción de requerimientos → soluciones técnicas
-Pensamiento crítico aplicado a riesgo financiero
-Diseño de métricas accionables
-🧰 Tech Stack
-Google BigQuery
-Google Cloud Storage
-SQL
-Looker Enterprise
-LookML
-Google Sheets
-🎓 Certification
+## ⚡ Dashboard Features
 
-👉 Google Cloud Data Analytics Professional Certificate
+- Cross-filtering (interactividad)  
+- Actualización automática:
+  - KPIs → cada hora  
+  - Otras métricas → diario  
+
+---
+
+## 📈 Business Impact
+
+El proyecto permitió:
+
+- Monitorear el flujo de caja de forma continua  
+- Detectar patrones de riesgo en préstamos  
+- Identificar concentraciones geográficas críticas  
+- Mejorar la toma de decisiones basada en datos  
+
+---
+
+## 📌 Key Insights
+
+- Determinados propósitos de préstamo presentan mayor riesgo de default  
+- Existe concentración geográfica en ciertas regiones  
+- El volumen de préstamos requiere monitoreo constante  
+
+---
+
+## 🧠 Skills Demonstrated
+
+### Técnicas
+- SQL avanzado (JOINs, CTAS, nested data)  
+- BigQuery  
+- Looker & LookML  
+- Modelado de datos  
+
+### Analíticas
+- Data cleaning  
+- Data storytelling  
+- Definición de KPIs  
+
+### De negocio
+- Traducción de requerimientos a soluciones técnicas  
+- Pensamiento crítico  
+- Análisis de riesgo financiero  
+
+---
+
+## 🧰 Tech Stack
+
+- Google BigQuery  
+- Google Cloud Storage  
+- SQL  
+- Looker Enterprise  
+- LookML  
+- Google Sheets  
+
+---
+
+## 🎓 Certification
+
+https://www.coursera.org/account/accomplishments/professional-cert/K73Z32MVDVJZ
+
+---
+
+## 🔥 Nota
+
+Este proyecto representa un caso práctico completo de análisis de datos en la nube, enfocado en resolver problemas reales de negocio y generar impacto mediante datos.
