@@ -1,73 +1,110 @@
-Cloud Data Analytics Capstone — TheLook Fintech
-Descripción general
-Proyecto capstone del Google Cloud Data Analytics Professional Certificate (Google Cloud × Coursera).
-El proyecto simula un rol real de Cloud Data Analyst en TheLook Fintech, una empresa fintech de préstamos a comerciantes online. El objetivo fue dar respuesta a preguntas de negocio concretas del departamento de Tesorería, cubriendo las cinco etapas del ciclo de datos en la nube: recopilar → procesar → almacenar → analizar → activar.
+🚀 Cloud Data Analytics Capstone — TheLook Fintech
+📌 Overview
 
-Problema de negocio
-El departamento de Tesorería necesitaba visibilidad sobre tres áreas críticas para la salud financiera de la empresa:
+Proyecto final del Google Cloud Data Analytics Professional Certificate (Google Cloud × Coursera).
 
-Flujo de caja: monitorear que los fondos recibidos superen los préstamos otorgados cada mes
-Propósito de los préstamos: identificar las razones principales por las que los clientes solicitan préstamos, dado que existe correlación entre el motivo declarado y la probabilidad de repago
-Distribución geográfica: entender cómo se distribuyen los préstamos por región para mitigar el riesgo de defaults concentrados
+En este proyecto asumí el rol de Cloud Data Analyst, trabajando con datos de TheLook Fintech, una empresa de préstamos para e-commerce.
 
+El objetivo fue resolver problemas reales del área de Tesorería aplicando el ciclo completo de datos en la nube:
 
-Herramientas y tecnologías
-HerramientaUsoBigQueryExploración, transformación y almacenamiento de datosSQLConsultas, joins, deduplicación, agregaciones, CTASGoogle Cloud StorageFuente de datos e importación de archivos externosLooker EnterpriseAnálisis visual y construcción del dashboard interactivoLookMLDefinición de dimensiones y métricas en LookerGoogle SheetsExportación y reporte de datos procesados
+Collect → Process → Store → Analyze → Activate
 
-Estructura del proyecto
-Parte 1 — Recopilación, procesamiento y almacenamiento en BigQuery
-Exploración del dataset
-Análisis del dataset fintech en BigQuery para identificar tablas, esquemas y columnas relevantes. Se localizaron las métricas clave: monto total de préstamos (loan_amount) y fecha de emisión (issued_date).
-Importación de datos externos
-Se importó un archivo CSV con la clasificación de estados de EE.UU. por región y subregión, generando una nueva tabla estándar en BigQuery para enriquecer el análisis geográfico.
-Transformación y joins
-Se realizó un JOIN entre la tabla de préstamos y la tabla de regiones para consolidar en un único reporte los campos loan_id, loan_amount y region_name, combinando datos de múltiples fuentes.
-Creación de tablas con CTAS
-Se utilizó CREATE TABLE AS SELECT para materializar los resultados del JOIN en una nueva tabla exportable, facilitando el trabajo posterior del equipo en Google Sheets.
-Trabajo con datos anidados
-Se extrajo la columna purpose almacenada como dato anidado dentro del registro de solicitud, para identificar los motivos declarados por los prestatarios al solicitar un préstamo.
-Deduplicación
-Se detectaron y eliminaron registros duplicados en el campo purpose (por ejemplo, el motivo "wedding" aparecía múltiples veces), garantizando la integridad de los datos para el análisis.
-Reporte de flujo de caja
-Se construyó una consulta que produce el monto total de préstamos emitidos por día y año, generando una tabla que permite al equipo de Tesorería monitorear el flujo de caja en el tiempo.
+🎯 Business Problem
 
-Parte 2 — Análisis y activación con Looker Enterprise
-Se desarrolló el dashboard interactivo "Loan Insights" con cuatro visualizaciones orientadas a responder las preguntas de negocio del equipo de Tesorería.
-Visualización 1 — Total de préstamos vigentes
-Métrica de valor único con formato condicional: fondo rojo automático cuando el total supera el umbral de $3.000.000.000, permitiendo al equipo identificar de inmediato si la exposición financiera excede el límite responsable definido.
-Visualización 2 — Distribución por estado de préstamo
-Gráfico de torta que muestra el porcentaje de préstamos vigentes por categoría de estado (al día, atrasado, en default, cancelado, pagado, en período de gracia), para monitorear la salud del portfolio de préstamos.
-Visualización 3 — Top 10 estados con mayor concentración de préstamos
-Gráfico de barras limitado a los 10 estados con mayor cantidad de préstamos vigentes, para identificar concentraciones geográficas de riesgo y orientar decisiones de distribución.
-Visualización 4 — Top 10 clientes por ingreso
-Tabla con los 10 clientes de mayor ingreso individual que son propietarios de vivienda y tienen préstamos vigentes, incluyendo ID de cliente, ingreso anual, estado y tasa de interés.
-Funcionalidades avanzadas del dashboard
+El equipo de Tesorería necesitaba visibilidad sobre 3 áreas clave para la salud financiera:
 
-Cross-filtering habilitado para filtrado dinámico entre visualizaciones
-Actualización automática configurada: métricas críticas cada hora, otras visualizaciones cada 24 horas
+💰 Flujo de caja
+Asegurar que los ingresos superen los préstamos otorgados mensualmente
+📊 Propósito de los préstamos
+Identificar los motivos de solicitud (relacionados con el riesgo de repago)
+🌎 Distribución geográfica
+Detectar concentraciones de riesgo por región
+🧰 Tech Stack
+Herramienta	Uso
+BigQuery	Exploración, transformación y almacenamiento
+SQL	JOINs, agregaciones, CTAS, deduplicación
+Google Cloud Storage	Ingesta de datos externos
+Looker Enterprise	Dashboard interactivo
+LookML	Modelado de métricas y dimensiones
+Google Sheets	Exportación de datos
+🏗️ Data Pipeline Architecture
 
+El proyecto cubre todo el flujo de datos en la nube:
 
-Habilidades demostradas
+Ingesta → Dataset fintech + CSV externo (regiones)
+Procesamiento → Transformaciones SQL en BigQuery
+Almacenamiento → Tablas optimizadas (CTAS)
+Análisis → Modelado en Looker
+Activación → Dashboard interactivo
+⚙️ Data Processing (BigQuery)
+🔍 Exploración
+Identificación de métricas clave:
+loan_amount
+issued_date
+📥 Ingesta de datos externos
+Importación de CSV con regiones de EE.UU.
+Creación de tabla enriquecida para análisis geográfico
+🔗 Transformación y joins
+Consolidación de datos en una única tabla:
+loan_id
+loan_amount
+region_name
+🏗️ Materialización (CTAS)
+Uso de CREATE TABLE AS SELECT
+Generación de tablas listas para análisis y exportación
+🧩 Datos anidados
+Extracción del campo purpose desde estructuras anidadas
+🧹 Limpieza de datos
+Eliminación de duplicados en purpose
+Mejora de calidad e integridad de datos
+📈 Reporte de flujo de caja
+Agregación de préstamos por día y año
+Base para monitoreo financiero
+📊 Dashboard — Loan Insights
 
-Exploración y comprensión de datasets en entornos cloud
-Escritura de consultas SQL complejas: JOINs, agregaciones, CTAS, manejo de datos anidados
-Deduplicación y limpieza de datos para garantizar integridad analítica
-Integración de fuentes de datos heterogéneas (dataset interno + CSV externo)
-Construcción de dashboards interactivos orientados a decisiones de negocio
-Traducción de requerimientos de stakeholders en soluciones técnicas concretas
-Aplicación de formato condicional y alertas visuales para monitoreo de KPIs
-Configuración de actualizaciones automáticas para visibilidad en tiempo real
+Dashboard interactivo desarrollado en Looker para responder preguntas de negocio.
 
+🔴 KPI principal — Total de préstamos vigentes
+Indicador con formato condicional
+🔴 Alerta visual si supera $3B
+🥧 Distribución por estado
+Préstamos por categoría:
+Al día
+Atrasado
+Default
+Pagado, etc.
+📍 Top 10 estados con mayor riesgo
+Identificación de concentración geográfica
+👤 Top 10 clientes por ingreso
+Segmentación de clientes de alto valor
+⚡ Features del Dashboard
+🔄 Cross-filtering (interactividad total)
+⏱️ Actualización automática
+KPIs críticos: cada hora
+Resto: cada 24h
+🧠 Skills Demonstrated
+Cloud Data Analytics end-to-end
+SQL avanzado (JOINs, CTAS, nested data)
+Data cleaning & deduplication
+Integración de múltiples fuentes
+Data storytelling con dashboards
+Traducción de negocio → solución técnica
+Diseño de KPIs y alertas visuales
+📈 Results & Impact
 
-Resultados
-El proyecto entregó al departamento de Tesorería de TheLook Fintech:
+El proyecto entregó:
 
-Un pipeline de datos completo desde la recopilación hasta la visualización
-Reportes estructurados sobre flujo de caja, propósito de préstamos y distribución geográfica
-Un dashboard interactivo y actualizable con las métricas clave para la toma de decisiones
+✅ Pipeline completo de datos en la nube
+✅ Reportes claros sobre:
+Flujo de caja
+Propósito de préstamos
+Distribución geográfica
+✅ Dashboard interactivo para toma de decisiones
+🎓 Certification
 
+Este proyecto forma parte del:
 
-Certificación
-Este proyecto forma parte del Google Cloud Data Analytics Professional Certificate
-Emitido por Google Cloud × Coursera
-Ver certificado
+Google Cloud Data Analytics Professional Certificate
+Google Cloud × Coursera
+
+👉 (https://www.coursera.org/account/accomplishments/professional-cert/K73Z32MVDVJZ)
