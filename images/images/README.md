@@ -1,1 +1,1 @@
-Carpeta de imágenes del proyecto
+# Carpeta de imágenes del proyecto
